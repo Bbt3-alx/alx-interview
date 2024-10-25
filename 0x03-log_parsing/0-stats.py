@@ -8,7 +8,7 @@ import signal
 
 
 def parse_log():
-    log_format = (
+    log_format = re.compile(
         r'^\d{1,3}(\.\d{1,3}){3} - \[.*\] "GET /projects/260 HTTP/1.1" '
         r'(200|301|400|401|403|404|405|500) \d+$'
     )
@@ -30,6 +30,7 @@ def parse_log():
                 print(f"{key}: {value}")
 
     for line in sys.stdin:
+        line = line.strip()
         line_count += 1
 
         if re.match(log_format, line):
