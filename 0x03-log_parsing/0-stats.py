@@ -46,4 +46,5 @@ def parse_log():
             print_stats(total_size, status_codes)
 
 
-parse_log()
+if __name__ == "__main__":
+    parse_log()
