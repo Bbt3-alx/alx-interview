@@ -8,9 +8,8 @@ import signal
 
 
 def parse_log():
-    codes = ''
     log_format = (
-        r'^\d{1,3}(\.\d{1,3}){3} - \[.*\] "GET \/.* HTTP\/1\.1" '
+        r'^\d{1,3}(\.\d{1,3}){3} - \[.*\] "GET /projects/260 HTTP/1.1" '
         r'(200|301|400|401|403|404|405|500) \d+$'
     )
 
