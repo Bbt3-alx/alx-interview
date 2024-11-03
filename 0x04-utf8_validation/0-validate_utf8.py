@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """utf8 validator"""
 
 
 def validUTF8(data):
     """
-    method that determines if a given data set represents a valid UTF-8 encoding.
+    method that determines if a given data set
+    represents a valid UTF-8 encoding.
     """
     # Number of bytes in the current UTF-8 character sequence
     remaining_bytes = 0
@@ -18,7 +19,7 @@ def validUTF8(data):
                 remaining_bytes = 2
             elif (byte >> 3) == 0b11110:  # 4-byte sequence
                 remaining_bytes = 3
-            elif (byte >> 7) != 0:  # Invalid 1-byte character (must start with 0)
+            elif (byte >> 7) != 0:  # Invalid 1-byte (must start with 0)
                 return False
         else:
             # Check if byte is a valid continuation byte (10xxxxxx)
