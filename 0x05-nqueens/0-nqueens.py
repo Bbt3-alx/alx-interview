@@ -5,12 +5,13 @@
 import sys
 
 
-"""Graphical representation of N queen"""
+'''Graphical representation of N queen
 
 args = sys.argv
 
 class Solution:
     """Class solution for N queens"""
+
     @staticmethod
     def solveNQueens(n):
         """Solve the N Queens problem"""
@@ -22,11 +23,11 @@ class Solution:
         except ValueError:
             print("N must be a number")
             exit(1)
-        
+
         if n < 4:
             print("N must be at least 4")
             exit(1)
-             
+
         # Initialize sets to track attacking positions
         n = int(n)
         col = set()
@@ -37,12 +38,12 @@ class Solution:
         board = [['.'] * n for i in range(n)]
 
         def backtrack(r):
-            "Backtrack to find a solution"
+            """Backtrack to find a solution"""
             if r == n:
                 copy = [''.join(row) for row in board]
                 result.append(copy)
                 return
-            
+
             for c in range(n):
                 if c in col or (r + c) in posDiag or (r - c) in negDiag:
                     continue
@@ -71,15 +72,17 @@ if __name__ == "__main__":
     for board in solution:
         for row in board:
             print(row)
-        print()
+        print()'''
 
-'''
+
 def solveNQueens(n):
-    """Solve the N Queens problem and print solutions in the specified format."""
+    """
+    Solve the N Queens problem and print solutions in the specified format.
+    """
 
     # Helper function to check if the position is valid for a queen
     def is_valid(board, row, col):
-        # Check for queen in same column and diagonals
+        """Check for queen in same column and diagonals"""
         for r, c in board:
             if c == col or (r + c == row + col) or (r - c == row - col):
                 return False
@@ -87,6 +90,7 @@ def solveNQueens(n):
 
     # Backtracking function to place queens
     def backtrack(row, board):
+        """Backtrack to find a solution"""
         if row == n:
             # A solution is found; format as required and print
             print([[r, c] for r, c in board])
@@ -121,4 +125,3 @@ if __name__ == "__main__":
 
     # Solve the N-Queens problem and print solutions.
     solveNQueens(N)
-'''
