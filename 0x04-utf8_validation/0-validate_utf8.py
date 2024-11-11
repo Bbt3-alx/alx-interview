@@ -11,6 +11,9 @@ def validUTF8(data):
     remaining_bytes = 0
 
     for byte in data:
+
+        byte & 0xFF
+
         if remaining_bytes == 0:
             # Determine the number of bytes in the UTF-8 character
             if (byte >> 5) == 0b110:  # 2-byte sequence
