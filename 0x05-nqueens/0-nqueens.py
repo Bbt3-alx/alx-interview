@@ -5,7 +5,7 @@
 import sys
 
 
-'''`Graphical representation of N queen`
+"""Graphical representation of N queen"""
 
 args = sys.argv
 
@@ -71,9 +71,9 @@ if __name__ == "__main__":
     for board in solution:
         for row in board:
             print(row)
-        print()'''
+        print()
 
-
+'''
 def solveNQueens(n):
     """Solve the N Queens problem and print solutions in the specified format."""
 
@@ -121,3 +121,4 @@ if __name__ == "__main__":
 
     # Solve the N-Queens problem and print solutions.
     solveNQueens(N)
+'''
