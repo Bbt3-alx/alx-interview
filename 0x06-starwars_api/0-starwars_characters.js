@@ -1,25 +1,38 @@
 #!/usr/bin/node
 
-const request = require('request');
+const request = require('request-promise-native'); // Use promise-based request
 
 const args = process.argv;
 const movieId = args[2];
 
-request({ url: `https://swapi-api.alx-tools.com/api/films/${movieId}`, json: true }, (error, response, body) => {
-  if (response.statusCode === 200) {
-    const data = body.characters;
+if (!movieId) {
+  console.log('Please provide a movie ID as the first argument.');
+  process.exit(1);
+}
 
-    data.forEach(character => {
-      request({ url: character, json: true }, (error, response, body) => {
-        if (response.statusCode === 200) {
-          const name = body.name;
-          console.log(name);
-        } else {
-          console.error(error);
-        }
-      });
+(async () => {
+  try {
+    // Fetch the movie details
+    const movieResponse = await request({
+      url: `https://swapi-api.alx-tools.com/api/films/${movieId}`,
+      json: true
     });
-  } else {
-    console.error(error);
+
+    const characterUrls = movieResponse.characters;
+
+    // Fetch characters in order
+    for (const characterUrl of characterUrls) {
+      try {
+        const characterResponse = await request({
+          url: characterUrl,
+          json: true
+        });
+        console.log(characterResponse.name);
+      } catch (characterError) {
+        console.error(`Failed to fetch character: ${characterUrl}`, characterError.message);
+      }
+    }
+  } catch (movieError) {
+    console.error('Failed to fetch movie details:', movieError.message);
   }
-});
+})();
