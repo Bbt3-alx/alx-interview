@@ -5,10 +5,10 @@ const request = require('request-promise-native'); // Use promise-based request
 const args = process.argv;
 const movieId = args[2];
 
-if (!movieId) {
-  console.log('Please provide a movie ID as the first argument.');
-  process.exit(1);
-}
+// if (!movieId) {
+//   console.log('Please provide a movie ID as the first argument.');
+//   process.exit(1);
+// }
 
 (async () => {
   try {
@@ -29,10 +29,10 @@ if (!movieId) {
         });
         console.log(characterResponse.name);
       } catch (characterError) {
-        console.error(`Failed to fetch character: ${characterUrl}`, characterError.message);
+        console.error(characterError.message);
       }
     }
   } catch (movieError) {
-    console.error('Failed to fetch movie details:', movieError.message);
+    console.error(movieError.message);
   }
 })();
