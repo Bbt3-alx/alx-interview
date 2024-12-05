@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
-"""The  Island Perimeter"""
+#!/usr/bin/python3
+"""The Island Perimeter"""
 
 
 def island_perimeter(grid):
     """returns the perimeter of the island described in grid"""
-
     perimeter = 0
     rows = len(grid)
     cols = len(grid[0]) if rows > 0 else 0
@@ -28,3 +27,4 @@ def island_perimeter(grid):
                 if j == cols - 1 or grid[i][j + 1] == 0:
                     perimeter += 1
     return perimeter
+
